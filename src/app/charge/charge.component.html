@@ -1,0 +1,72 @@
+<div class="container">
+    <h2>Liste des charges</h2>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Somme</th>
+            <th>Montant</th>
+            <th>Type</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let charge of listCharges">
+            <td>{{ charge.idCharge }}</td>
+            <td>{{ charge.sommeCharge }}</td>
+            <td>{{ charge.amount }}</td>
+            <td>{{ charge.typeCharge }}</td>
+            <td>
+                <button class="btn btn-sm btn-primary mr-2" (click)="updateCharge(charge)">Editer</button>
+                <button class="btn btn-sm btn-danger" (click)="deleteCharge(charge.idCharge)">Supprimer</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <button class="btn btn-success mb-3" (click)="submitForm()">Ajouter une charge</button>
+
+    <div *ngIf="form">
+        <h2>Ajouter une charge</h2>
+        <form (submit)="submitForm()">
+            <div class="form-group">
+                <label>Somme</label>
+                <input type="number" class="form-control" [(ngModel)]="charge.sommeCharge" name="sommeCharge" required>
+            </div>
+            <div class="form-group">
+                <label>Montant</label>
+                <input type="number" class="form-control" [(ngModel)]="charge.amount" name="amount" required>
+            </div>
+            <div class="form-group">
+                <label>Type</label>
+                <input type="text" class="form-control" [(ngModel)]="charge.typeCharge" name="typeCharge" required>
+            </div>
+            <button type="submit" class="btn btn-success">Ajouter</button>
+            <button type="button" class="btn btn-secondary ml-2" (click)="cancel()">Annuler</button>
+        </form>
+    </div>
+
+    <hr>
+
+    <div *ngIf="updateCharge">
+        <h2>Editer la charge</h2>
+        <form (submit)="submitForm()">
+            <div class="form-group">
+                <label>Somme</label>
+                <input type="number" class="form-control" [(ngModel)]="charge.sommeCharge" name="sommeCharge" required>
+            </div>
+            <div class="form-group">
+                <label>Montant</label>
+                <input type="number" class="form-control" [(ngModel)]="charge.amount" name="amount" required>
+            </div>
+            <div class="form-group">
+                <label>Type</label>
+                <input type="text" class="form-control" [(ngModel)]="charge.typeCharge" name="typeCharge" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
+            <button type="button" class="btn btn-secondary ml-2" (click)="cancel()">Annuler</button>
+        </form>
+    </div>
+</div>
